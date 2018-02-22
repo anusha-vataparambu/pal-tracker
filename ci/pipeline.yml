@@ -53,10 +53,10 @@ resources:
 #  source:
 #    url: https://hooks.slack.com/services/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
 
-- name: slack-alert
-  type: slack-notification
-  source:
-    url: https://hooks.slack.com/services/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
+#- name: slack-alert
+#  type: slack-notification
+#  source:
+#    url: https://hooks.slack.com/services/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
 
 jobs:
 - name: build
@@ -87,10 +87,10 @@ jobs:
       path: pal-tracker-artifacts/pal-tracker-*.jar
       environment_variables:
         WELCOME_MESSAGE: "Hello from the review environment"
-  - put: slack-alert
-    params:
-      text: |
-        The review deploy was successful from Concourse.
+#  - put: slack-alert
+#    params:
+#      text: |
+#        The review deploy was successful from Concourse.
 
 - name: deploy-production
   plan:
