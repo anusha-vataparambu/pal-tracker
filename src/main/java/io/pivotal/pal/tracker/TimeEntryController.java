@@ -27,7 +27,7 @@ public class TimeEntryController {
     }
 
     @GetMapping("/time-entries/{id}")
-    public @ResponseBody ResponseEntity<TimeEntry> read(@PathVariable("id") Long id){
+    public @ResponseBody ResponseEntity<TimeEntry> read(@PathVariable Long id){
         TimeEntry te = repo.find(id);
         if (te!=null)
             return ResponseEntity.ok(te);
@@ -42,7 +42,7 @@ public class TimeEntryController {
     }
 
     @PutMapping("/time-entries/{id}")
-    public @ResponseBody ResponseEntity update(@PathVariable("id") long id, @RequestBody TimeEntry te) {
+    public @ResponseBody ResponseEntity update(@PathVariable long id, @RequestBody TimeEntry te) {
         if (repo.update(id, te) != null)
             return ResponseEntity.ok(te);
         else
@@ -50,7 +50,7 @@ public class TimeEntryController {
     }
 
     @DeleteMapping("/time-entries/{id}")
-    public @ResponseBody ResponseEntity<TimeEntry> delete(@PathVariable("id") long id){
+    public @ResponseBody ResponseEntity<TimeEntry> delete(@PathVariable long id){
         repo.delete(id);
         return ResponseEntity.noContent().build();
     }

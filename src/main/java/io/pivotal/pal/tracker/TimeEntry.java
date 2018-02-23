@@ -6,8 +6,6 @@ import java.util.Objects;
 public class TimeEntry {
     private long id;
     private long projectId;
-
-
     private long userId;
     private LocalDate date;
     private int hours;
