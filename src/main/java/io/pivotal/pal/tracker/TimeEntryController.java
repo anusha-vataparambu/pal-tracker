@@ -43,10 +43,12 @@ public class TimeEntryController {
 
     @PutMapping("/time-entries/{id}")
     public @ResponseBody ResponseEntity update(@PathVariable long id, @RequestBody TimeEntry te) {
-        if (repo.update(id, te) != null)
-            return ResponseEntity.ok(te);
+        TimeEntry newTe = repo.update(id, te);
+        if (newTe != null)
+            return ResponseEntity.ok(newTe);
         else
             return ResponseEntity.notFound().build();
+
     }
 
     @DeleteMapping("/time-entries/{id}")

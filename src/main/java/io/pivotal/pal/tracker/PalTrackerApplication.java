@@ -6,11 +6,13 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.util.ISO8601DateFormat;
 import com.fasterxml.jackson.databind.util.ISO8601Utils;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.mysql.cj.jdbc.MysqlDataSource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
+import javax.sql.DataSource;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.Date;
@@ -18,10 +20,13 @@ import java.util.TimeZone;
 
 @SpringBootApplication
 public class PalTrackerApplication {
+    MysqlDataSource dataSource = new MysqlDataSource();
+
 
     @Bean
     public TimeEntryRepository getTimeEntyRepository() {
-        return new InMemoryTimeEntryRepository();
+        dataSource.setUrl(System.getenv("SPRING_DATASOURCE_URL"));
+        return new JdbcTimeEntryRepository(dataSource);
     }
 
     @Bean
