@@ -4,4 +4,4 @@ applications:
   path: build/libs/pal-tracker.jar
   host: sk-pal-tracker-review
   services:
-    - tracker-database
+  - tracker-database
