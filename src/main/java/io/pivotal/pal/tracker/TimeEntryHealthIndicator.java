@@ -17,7 +17,7 @@ public class TimeEntryHealthIndicator implements HealthIndicator{
     public Health health() {
 
         if (timeEntryRepo.list().size() > 5) {
-            return Health.down().withDetail("More than 5 records", 1).build();
+            return Health.down().withDetail("More than 5 records", 1L).build();
         }
 
         return Health.up().build();
